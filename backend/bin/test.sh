@@ -31,6 +31,13 @@ if [[ -e "$TEST_KB_ROOT/runtime/postgres/connection.json" || -L "$TEST_KB_ROOT/r
     exit 1
 fi
 
+# Retrieval requires an explicit removal-request list; the empty test KB declares none.
+REQUEST_IDENTIFIERS_FILE="$TEST_KB_ROOT/config/privacy-request-identifiers.json"
+if [[ ! -e "$REQUEST_IDENTIFIERS_FILE" ]]; then
+    mkdir -p "$TEST_KB_ROOT/config"
+    printf '%s\n' '[]' > "$REQUEST_IDENTIFIERS_FILE"
+fi
+
 # Never inherit production app, bridge, billing, or libpq configuration into tests.
 unset HIS_APP_DB_HOST HIS_APP_DB_PORT HIS_APP_DB_NAME HIS_APP_DB_USER HIS_APP_DB_PASSWORD HIS_APP_DATA_ROOT
 unset HIS_KB_ROOT HIS_KB_PUBLIC_CHAT_STATE_DB HIS_KB_PUBLIC_CHAT_OWNER_EXCEPTION

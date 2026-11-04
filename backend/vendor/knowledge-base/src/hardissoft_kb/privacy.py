@@ -57,14 +57,16 @@ _ASR_ESTIMATE_FIELDS = ('source_window_start_seconds','estimated_window_start_se
 
 @lru_cache(maxsize=4)
 def _load_request_identifiers(path):
-    """Return configured request targets; a missing file means no request applies.
+    """Return the configured request targets; ``[]`` records that none apply.
 
-    An unreadable or malformed file fails closed instead of serving unredacted text.
+    The file is required: a missing, unreadable or malformed file fails closed
+    instead of serving text without the requested redactions.
     """
     try:
         raw = path.read_text(encoding='utf-8')
     except FileNotFoundError:
-        return ()
+        raise FileNotFoundError('privacy request identifier configuration is required; '
+                                'use [] when no removal request applies') from None
     values = json.loads(raw)
     if not isinstance(values, list) or not all(isinstance(value, str) and value.strip() for value in values):
         raise ValueError('privacy request identifiers must be a JSON array of non-empty strings')

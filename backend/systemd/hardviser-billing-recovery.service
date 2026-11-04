@@ -1,0 +1,20 @@
+[Unit]
+Description=Bounded recovery of pending sandbox billing events
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=hardviser
+Group=hardviser
+WorkingDirectory=/opt/hardviser/backend
+EnvironmentFile=/etc/hardviser/backend.env
+Environment=PYTHONPATH=/opt/hardviser/backend/vendor/knowledge-base/src:/opt/hardviser/backend
+ExecStart=/opt/hardviser/backend/.venv/bin/python -m hardissoft_public_chat.billing --recover-pending --limit 1
+UMask=0077
+TimeoutStartSec=5min
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/var/lib/hardviser/app-data /var/lib/hardviser/knowledge-base

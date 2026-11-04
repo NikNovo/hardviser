@@ -1,0 +1,23 @@
+{
+  "model": "intfloat/multilingual-e5-small",
+  "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+  "license": "mit",
+  "model_card_url": "https://huggingface.co/intfloat/multilingual-e5-small/blob/614241f622f53c4eeff9890bdc4f31cfecc418b3/README.md",
+  "python": "3.10.12",
+  "device": "cpu",
+  "dimensions": 384,
+  "embedding_lock_sha256": "ee016221d408a125efa17f3573cd6735253be78980bef223ddc5ab268cb930f9",
+  "artifact_manifest_sha256": "2af4ff8fc7830d6017a216cde3e5798e3daaef21119ec3fffa6da08c1d56d600",
+  "upstream_file_sha256": {
+    "model.safetensors": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+    "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+    "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865"
+  },
+  "config_git_blob_sha1": {
+    "config.json": "60a2a84020f1d74cc53ea9e8c4e91cf4af6c2b68",
+    "tokenizer_config.json": "059214673d9d6d2ee319411e2ffec8c024b816d5",
+    "special_tokens_map.json": "e0b1d18ecd0ae4ff1d47bd297d910c0cf83e504b"
+  },
+  "prepare_command": "python -m hardissoft_kb.search.vector prepare",
+  "weights_committed": false
+}

@@ -1,0 +1,10 @@
+[Unit]
+Description=Nightly Hardviser application backup
+
+[Timer]
+OnCalendar=*-*-* 03:30:00
+Persistent=true
+Unit=hardviser-backup.service
+
+[Install]
+WantedBy=timers.target

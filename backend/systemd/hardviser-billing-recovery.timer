@@ -1,0 +1,10 @@
+[Unit]
+Description=Periodic bounded recovery of pending sandbox billing events
+
+[Timer]
+OnCalendar=*-*-* *:00/30:00
+Persistent=true
+Unit=hardviser-billing-recovery.service
+
+[Install]
+WantedBy=timers.target

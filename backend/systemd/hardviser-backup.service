@@ -1,0 +1,21 @@
+[Unit]
+Description=Local Hardviser snapshot and explicitly configured encrypted offsite backup
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=hardviser
+Group=hardviser
+WorkingDirectory=/opt/hardviser/backend
+EnvironmentFile=/etc/hardviser/backend.env
+Environment=HIS_APP_BACKUP_CONFIG_FILE=/etc/hardviser/backend.env
+LoadCredential=rclone.conf:/etc/hardviser/rclone.conf
+ExecStart=/opt/hardviser/backend/bin/app-backup.sh
+UMask=0077
+TimeoutStartSec=infinity
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/var/lib/hardviser/app-data

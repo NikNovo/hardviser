@@ -1,0 +1,12 @@
+# Supported interpreter: CPython 3.10.12 (.python-version).
+# Install torch from the CPU wheel index; see README.md.
+numpy==1.26.4
+psycopg[binary]==3.2.12
+pypdf==6.21.2
+sentencepiece==0.2.0
+safetensors==0.5.2
+tokenizers==0.21.0
+torch==2.5.1+cpu
+transformers==4.48.3
+huggingface-hub==0.28.1
+pytest==8.4.2

@@ -1,0 +1,17 @@
+node_modules
+.vercel
+.env*
+dist
+backend
+.git
+.github
+.gitignore
+docs
+test
+README.md
+SECURITY.md
+THIRD_PARTY_NOTICES.md
+*.zip
+*.tar*
+*.log
+*.har

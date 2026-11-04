@@ -1,0 +1,339 @@
+.record-table {
+  min-width: 0;
+  color: var(--ink);
+}
+
+.record-table__toolbar {
+  display: grid;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.record-table__filters {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.record-table__filters > .field:first-child {
+  flex: 1 1 16rem;
+}
+
+.record-table__filters > .field:last-child {
+  flex: 0 1 12rem;
+}
+
+.record-table__search-control {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink-muted);
+}
+
+.record-table__search-control:focus-within {
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.record-table__search-control input {
+  min-width: 0;
+  min-height: 42px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  font-size: 16px;
+}
+
+.record-table__search-control input:hover,
+.record-table__search-control input:focus {
+  border: 0;
+  box-shadow: none;
+}
+
+.record-table__search-control input:focus-visible {
+  outline: 0;
+}
+
+.record-table__toolbar-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.record-table__count {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.record-table__count strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.record-table__view-toggle {
+  flex: 0 0 auto;
+}
+
+.record-table__empty {
+  justify-items: start;
+}
+
+.record-table__empty svg {
+  color: var(--ink-muted);
+}
+
+.record-table__list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.record-table__list-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.record-table__list-main {
+  display: grid;
+  justify-items: start;
+  gap: 0;
+  min-width: 0;
+}
+
+.record-table__actions-toggle {
+  align-self: start;
+}
+
+.record-table__actions-toggle[aria-expanded="true"] {
+  background: var(--quiet);
+}
+
+.record-table__list-actions {
+  grid-column: 1 / -1;
+}
+
+.record-table__list-actions[hidden] {
+  display: none;
+}
+
+.record-table__title-button {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  min-height: 44px;
+  padding: var(--space-2) 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.record-table__title-button:hover,
+.record-table__title-button:focus-visible {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+
+.record-table__list-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  min-width: 0;
+}
+
+.record-table__status {
+  flex: 0 0 auto;
+  font-weight: 500;
+}
+
+.record-table__summary {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  min-width: 0;
+  color: var(--ink-muted);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.record-table__summary strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.record-table__value--numeric {
+  font-family: var(--mono-font);
+  font-variant-numeric: tabular-nums;
+}
+
+.record-table__list-actions,
+.record-table__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  min-width: 0;
+}
+
+.record-table__actions .button,
+.record-table__list-actions .button {
+  flex: 0 0 auto;
+}
+
+.record-table__scroll-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+.record-table__scroll {
+  position: relative;
+  grid-row: 2;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-color: var(--line-strong) transparent;
+  scrollbar-width: thin;
+}
+
+.record-table__scroll:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: -3px;
+}
+
+.record-table__scroll-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-1);
+  grid-row: 1;
+  min-height: 36px;
+  padding: 0 var(--space-3);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-muted);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.record-table__table {
+  width: max(100%, 64rem);
+  min-width: 64rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 20px;
+  text-align: left;
+}
+
+.record-table__table th,
+.record-table__table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+
+.record-table__table thead th {
+  height: 48px;
+  background: var(--surface-soft);
+  color: var(--ink-muted);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.record-table__table tbody tr {
+  height: 48px;
+}
+
+.record-table__table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.record-table__table tbody td {
+  color: var(--ink-soft);
+}
+
+.record-table__table .record-table__identity {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  width: 12rem;
+  max-width: 12rem;
+  background: var(--surface);
+  box-shadow: 1px 0 0 var(--line);
+}
+
+.record-table__table thead .record-table__identity {
+  z-index: 3;
+  background: var(--surface-soft);
+}
+
+.record-table__table tbody .record-table__identity {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.record-table__table .record-table__action-heading,
+.record-table__table .record-table__action-cell {
+  width: 12rem;
+}
+
+.record-table__table .record-table__numeric {
+  text-align: right;
+  font-family: var(--mono-font);
+  font-variant-numeric: tabular-nums;
+}
+
+.record-table__table .record-table__mono {
+  font-family: var(--mono-font);
+  font-variant-numeric: tabular-nums;
+}
+
+.record-table__table .record-table__action-cell {
+  color: var(--ink);
+}
+
+.record-table__unknown {
+  color: var(--ink-muted);
+}
+
+
+.record-table__table .record-table__identity {
+  padding-block: 0;
+}
+
+.record-table__table .record-table__action-cell {
+  padding-block: 0;
+}

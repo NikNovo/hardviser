@@ -1,0 +1,52 @@
+# Local secrets; only these reviewed templates may be committed.
+.env*
+!/.env.example
+!/backend/.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+*credentials*.env
+
+# Dependencies and generated output.
+node_modules/
+dist/
+build/
+*.egg-info/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+coverage/
+
+# Deployment metadata, local agent state and editor caches.
+.vercel/
+.superpowers/
+.idea/
+.vscode/
+.DS_Store
+
+# Runtime data, diagnostics and private audit artifacts.
+*.log
+*.sqlite*
+*.db
+*.dump
+*.bak
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.age
+*.har
+backups/
+browser-profiles/
+playwright-report/
+test-results/
+secret-scan-results/
+provenance-edited-history-quarantined.json

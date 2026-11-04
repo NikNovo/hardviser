@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frontend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npm audit --audit-level=moderate
+
+  backend:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: backend
+    env:
+      HIS_APP_TEST_DATABASE: hardissoft_app_test
+      HIS_APP_TEST_HOST: 127.0.0.1
+      HIS_APP_TEST_PORT: '5432'
+      HIS_APP_TEST_ADMIN_USER: postgres
+      # Keep model preparation, tests, and HTTP smoke on one hosted-runner path.
+      HIS_APP_TEST_KB_ROOT: /home/runner/.cache/hardviser-test/knowledge-base
+      TOKENIZERS_PARALLELISM: 'false'
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16@sha256:0dd3149a06e4579a0d70d8fef9945636cd514005e7237deb27f9b67886f8dc4f
+        env:
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - '127.0.0.1:5432:5432'
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.10.12'
+      - name: Install PostgreSQL client tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y postgresql-client
+      - name: Verify bootstrap refuses existing application state
+        run: bin/test-postgres-bootstrap-guard-smoke.sh
+      - name: Install pinned runtime
+        run: |
+          python -m venv .venv
+          PYTHON=.venv/bin/python bin/install-deps.sh
+      - name: Prepare verified model assets outside the checkout
+        run: PYTHON=.venv/bin/python bin/setup-model.sh
+      - name: Bootstrap only the disposable fixture
+        run: bin/test-postgres-bootstrap.sh
+      - name: Run the complete backend suite
+        run: PYTHON=.venv/bin/python bin/test.sh
+      - name: Exercise actual signed HTTP requests
+        run: .venv/bin/python bin/http-smoke.py

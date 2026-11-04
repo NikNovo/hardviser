@@ -1,0 +1,24 @@
+[Unit]
+Description=Hardviser project-file ingestion worker
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=hardviser
+Group=hardviser
+WorkingDirectory=/opt/hardviser/backend
+EnvironmentFile=/etc/hardviser/backend.env
+Environment=PYTHONPATH=/opt/hardviser/backend/vendor/knowledge-base/src:/opt/hardviser/backend
+ExecStart=/opt/hardviser/backend/.venv/bin/python -m hardissoft_public_chat.ingest
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/var/lib/hardviser/app-data /var/lib/hardviser/knowledge-base
+
+[Install]
+WantedBy=multi-user.target

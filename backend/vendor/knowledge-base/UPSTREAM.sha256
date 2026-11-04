@@ -1,0 +1,14 @@
+# Upstream source snapshot manifest SHA-256: 3aaa7d287d07add6edb2ddfb9c6db459b043a859783dfad1add627b029fca1a8
+# Original source hashes; catalog.py, context.py, and search/vector.py have only their KB-root defaults made portable here.
+# These are code/lock metadata only; no database, corpus, model weights, or connection configuration is included.
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  src/hardissoft_kb/__init__.py
+956476ec77258965dd6c2c9634b08c1a5cdbe074a3715afb85138064977c575d  src/hardissoft_kb/catalog.py
+# src/hardissoft_kb/privacy.py: removal-request identifiers moved to private KB configuration; its upstream hash stays in the private provenance record because it would confirm guessed personal data.
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  src/hardissoft_kb/search/__init__.py
+f95934381d53e8ae8743909cf9d780f532ca63f73e9aceb434f2e9c4f63e0329  src/hardissoft_kb/search/context.py
+67242c70a5c33b2457a20c914348d4b2908133657a70bf7ae0601eeb71ae6949  src/hardissoft_kb/search/hybrid.py
+ad634c9cd2b0bbf6e0174224648bb5cd55f08d7b65cad70177da62086cadbca9  src/hardissoft_kb/search/lexical.py
+98ce641c7f3c733c3e8ea8c881744438483307d2f2f88618f14ce1352e1d24b3  src/hardissoft_kb/search/structured.py
+96c8e98d8377445efe465776862f65217ce7c5094588b3d9f39bedd9bc9cdcc1  src/hardissoft_kb/search/vector.py
+ee016221d408a125efa17f3573cd6735253be78980bef223ddc5ab268cb930f9  requirements/embedding.lock
+2ccc94f186cb16c8e2b1b8dbddad58e23c228b96560e2cb6e321e00725c168e8  requirements/documents-pypdf.lock
